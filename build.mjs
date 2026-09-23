@@ -1,7 +1,11 @@
 // Builds dist/ from src/template.html + content/site.json.
 // Netlify runs this after every save in /admin. If the content is invalid the
 // build throws, the deploy fails, and the live site stays on the last good version.
-import { readFileSync, writeFileSync, rmSync, mkdirSync, cpSync } from 'node:fs';
+// Uploaded photos are re-encoded so their hidden metadata (GPS location of a
+// customer's home, camera details) never reaches the published site.
+import { readFileSync, writeFileSync, rmSync, mkdirSync, cpSync, readdirSync } from 'node:fs';
+import { extname } from 'node:path';
+import sharp from 'sharp';
 
 const ON_NETLIFY = process.env.NETLIFY === 'true';
 const site = JSON.parse(readFileSync('content/site.json', 'utf8'));
@@ -84,7 +88,40 @@ const serviceOptions = serviceList
   .map((s) => `<option value="${esc(s.title.trim())}">${esc(s.title.trim())}</option>`)
   .join('\n            ');
 
-const aboutPhoto = about.photo
+rmSync('dist', { recursive: true, force: true });
+cpSync('static', 'dist', { recursive: true, filter: (src) => !src.startsWith('static/uploads') });
+
+// Auto-rotate, strip all metadata, cap the long edge. A photo that can't be read
+// is skipped with a warning so one bad upload doesn't block every other edit.
+const PHOTO_TYPES = new Set(['.jpg', '.jpeg', '.png', '.webp']);
+const MAX_EDGE = 2400;
+const published = new Set();
+mkdirSync('dist/uploads');
+for (const name of readdirSync('static/uploads')) {
+  if (name.startsWith('.')) continue;
+  const ext = extname(name).toLowerCase();
+  if (!PHOTO_TYPES.has(ext)) {
+    console.warn(`Skipping ${name}: only JPEG, PNG and WebP photos are published`);
+    continue;
+  }
+  try {
+    const img = sharp(`static/uploads/${name}`)
+      .rotate()
+      .resize({ width: MAX_EDGE, height: MAX_EDGE, fit: 'inside', withoutEnlargement: true });
+    const encoded = ext === '.png' ? img.png() : ext === '.webp' ? img.webp({ quality: 82 }) : img.jpeg({ quality: 82, mozjpeg: true });
+    await encoded.toFile(`dist/uploads/${name}`);
+    published.add(`/uploads/${name}`);
+  } catch (err) {
+    console.warn(`Skipping ${name}: ${err.message}`);
+  }
+}
+const isPublished = (path) => {
+  if (published.has(path)) return true;
+  console.warn(`Not showing ${path}: the file is missing or couldn't be processed`);
+  return false;
+};
+
+const aboutPhoto = about.photo && isPublished(about.photo)
   ? `<div class="about-photo"><img ${imgAttrs(about.photo, [500, 900], '(max-width: 768px) 88vw, 40vw')} alt="${esc(about.photo_alt)}" loading="lazy" decoding="async"></div>`
   : '<div class="about-photo">Photo Placeholder</div>';
 
@@ -99,7 +136,7 @@ const PLACEHOLDER_SHADES = [
   'linear-gradient(135deg, #7a6048, #a8876a)',
   'linear-gradient(135deg, #a8876a, #c4a888)',
 ];
-const photos = (gallery.photos || []).filter((p) => p && p.image);
+const photos = (gallery.photos || []).filter((p) => p && p.image && isPublished(p.image));
 const galleryItems = photos.length
   ? photos.map((p, i) => {
       const sizes = i === 0
@@ -155,9 +192,6 @@ for (const [key, value] of Object.entries(tokens)) {
 const leftover = html.match(/\{\{[A-Z_0-9]+\}\}/g);
 if (leftover) throw new Error(`Unfilled placeholders: ${[...new Set(leftover)].join(', ')}`);
 
-rmSync('dist', { recursive: true, force: true });
-mkdirSync('dist');
-cpSync('static', 'dist', { recursive: true });
 cpSync('admin', 'dist/admin', { recursive: true });
 writeFileSync('dist/index.html', html);
 console.log(`Built dist/index.html (${serviceList.length} services, ${photos.length} gallery photos${ON_NETLIFY ? ', Netlify image CDN' : ''})`);
