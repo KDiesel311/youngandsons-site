@@ -56,6 +56,7 @@ collections:
               - label: Service cards
                 name: items
                 widget: list
+                label_singular: Service
                 summary: "{{fields.title}}"
                 hint: "Drag to reorder. Cards are numbered automatically and also fill the “Service Needed” menu on the contact form."
                 fields:
@@ -89,6 +90,7 @@ collections:
               - label: Photos
                 name: photos
                 widget: list
+                label_singular: Photo
                 summary: "{{fields.caption}}"
                 hint: "The first photo is shown largest. Drag to reorder. Phone photos are fine; they get resized automatically."
                 fields:
