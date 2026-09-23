@@ -39,6 +39,8 @@ collections:
               - { label: Intro sentence, name: text, widget: text }
               - { label: Badge (big text), name: badge_big, widget: string }
               - { label: Badge (small text), name: badge_small, widget: string }
+              - { label: Big photo, name: photo, widget: image, required: false, choose_url: false, hint: "The large photo next to the headline. The badge sits on top of it in the bottom-right corner. A wide (landscape) photo works best. Leave empty for the plain wood background." }
+              - { label: Big photo description, name: photo_alt, widget: string, required: false, hint: "A few words for Google and screen readers, e.g. “Refinished red oak living room floor”." }
 
           - label: Door to Floor banner
             name: strip

@@ -121,6 +121,11 @@ const isPublished = (path) => {
   return false;
 };
 
+// Above the fold, so it loads eagerly; the badge overlays it
+const heroVisual = hero.photo && isPublished(hero.photo)
+  ? `<img class="hero-visual-img" ${imgAttrs(hero.photo, [700, 1100, 1600], '(max-width: 768px) 88vw, 44vw')} alt="${esc(hero.photo_alt)}" decoding="async">`
+  : '<div class="hero-visual-bg"></div>';
+
 const aboutPhoto = about.photo && isPublished(about.photo)
   ? `<div class="about-photo"><img ${imgAttrs(about.photo, [500, 900], '(max-width: 768px) 88vw, 40vw')} alt="${esc(about.photo_alt)}" loading="lazy" decoding="async"></div>`
   : '<div class="about-photo">Photo Placeholder</div>';
@@ -164,6 +169,7 @@ const tokens = {
   HERO_TEXT: esc(hero.text),
   BADGE_BIG: esc(hero.badge_big),
   BADGE_SMALL: esc(hero.badge_small),
+  HERO_VISUAL: heroVisual,
   STRIP_TITLE: esc(strip.title),
   STRIP_TEXT: esc(strip.text),
   SERVICES_HEADING: esc(services.heading),
