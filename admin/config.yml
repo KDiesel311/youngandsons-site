@@ -2,7 +2,7 @@
 # Anyone with write access to the GitHub repo can sign in with their GitHub account.
 backend:
   name: github
-  repo: s00bar00/youngandsons-site
+  repo: KDiesel311/youngandsons-site
   branch: main
 
 site_url: https://youngandsonshardwood.com
