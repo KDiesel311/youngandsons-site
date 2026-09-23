@@ -1,0 +1,9 @@
+[build]
+  command = "node build.mjs"
+  publish = "dist"
+
+# Keep the editor out of search results
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"

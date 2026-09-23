@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<!-- Page template. Text and photos come from content/site.json (edited at /admin); build.mjs fills in the placeholders. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Young &amp; Sons Hardwood Flooring | Colorado &amp; Southern Wyoming</title>
+<meta name="description" content="Expert hardwood installation, refinishing, and repair across Colorado and Southern Wyoming. Free in-home estimates. All labor and materials included.">
+<link rel="canonical" href="https://youngandsonshardwood.com/">
+<meta property="og:title" content="Young &amp; Sons Hardwood Flooring | Colorado &amp; Southern Wyoming">
+<meta property="og:description" content="Expert hardwood installation, refinishing, and repair across Colorado and Southern Wyoming. Free in-home estimates.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://youngandsonshardwood.com/">
+<meta property="og:image" content="https://youngandsonshardwood.com/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Young &amp; Sons Hardwood Flooring | Colorado &amp; Southern Wyoming">
+<meta name="twitter:description" content="Expert hardwood installation, refinishing, and repair across Colorado and Southern Wyoming. Free in-home estimates.">
+<meta name="twitter:image" content="https://youngandsonshardwood.com/logo.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪵</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{{JSON_LD}}
+</script>
+<style>
+@font-face {
+  font-family: 'Hackensack';
+  src: url('./fonts/Hackensack-SemiBold.woff2') format('woff2'),
+       url('./fonts/Hackensack-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hackensack';
+  src: url('./fonts/Hackensack-SemiBoldItalic.woff2') format('woff2'),
+       url('./fonts/Hackensack-SemiBoldItalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+:root {
+  --walnut: #1E1A14;
+  --walnut-90: rgba(30,26,20,0.93);
+  --copper: #BF6A3A;
+  --copper-lt: #D07E52;
+  --copper-glow: rgba(191,106,58,0.12);
+  --gold: #C9A86C;
+  --gold-lt: #D9B886;
+  --cream: #F5F0E6;
+  --sand: #D5C5AB;
+  --white: #FDFBF7;
+  --text: #3B2D25;
+  --text-mid: #5C4A3E;
+  --text-light: #8D7B6E;
+  --font-heading: 'Hackensack', Georgia, serif;
+  --font-body: 'Lora', Georgia, serif;
+  --nav-h: 80px;
+  --nav-h-shrink: 58px;
+  --radius: 6px;
+  --shadow-sm: 0 1px 3px rgba(35,23,18,0.06);
+  --shadow-md: 0 4px 20px rgba(35,23,18,0.08);
+  --shadow-lg: 0 12px 40px rgba(35,23,18,0.12);
+}
+
+.skip-link {
+  position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+  font-family: var(--font-body); font-size: 0.9rem; font-weight: 600;
+  background: var(--copper); color: var(--cream); padding: 0.75rem 1.5rem;
+  border-radius: 0 0 var(--radius) var(--radius); z-index: 10000;
+}
+.skip-link:focus { position: fixed; left: 50%; top: 0; transform: translateX(-50%); width: auto; height: auto; }
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--walnut);
+  background: var(--white);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: 1.15; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--copper); outline-offset: 2px;
+}
+img { max-width: 100%; height: auto; display: block; }
+ul { list-style: none; }
+
+.container { width: 88%; max-width: 1180px; margin: 0 auto; }
+
+/* ═══════════════════════════════════════
+   NAV
+   ═══════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(251,248,243,0.97);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: height 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  height: var(--nav-h);
+}
+.nav.scrolled {
+  height: var(--nav-h-shrink);
+  border-bottom-color: var(--sand);
+  box-shadow: 0 1px 12px rgba(35,23,18,0.06);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 100%; max-width: 1280px; margin: 0 auto; padding: 0 5%;
+}
+.nav-logo {
+  font-family: var(--font-heading); font-size: 1.6rem; font-weight: 600;
+  color: var(--walnut); letter-spacing: 0.03em; white-space: nowrap;
+  transition: font-size 0.3s ease;
+}
+.nav-logo span { color: var(--gold); }
+.nav.scrolled .nav-logo { font-size: 1.35rem; }
+.nav-links { display: flex; align-items: center; gap: 2.2rem; }
+.nav-links a {
+  font-family: var(--font-heading); font-weight: 600; font-size: 0.82rem;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--text);
+  transition: color 0.2s ease; position: relative;
+}
+.nav-links a:not(.btn-cta)::after {
+  content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px;
+  background: var(--copper); transition: width 0.25s ease, left 0.25s ease;
+}
+.nav-links a:not(.btn-cta):hover { color: var(--copper); }
+.nav-links a:not(.btn-cta):hover::after { width: 100%; left: 0; }
+
+.btn-cta {
+  display: inline-block; background: var(--copper); color: var(--cream);
+  font-family: var(--font-body); font-weight: 600; font-size: 0.82rem;
+  padding: 0.65rem 1.5rem; border-radius: var(--radius); letter-spacing: 0.06em;
+  text-transform: uppercase; border: 2px solid var(--copper);
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+.btn-cta:hover {
+  background: transparent; color: var(--copper);
+  box-shadow: 0 0 0 1px var(--copper);
+}
+
+.hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  background: none; border: none; padding: 6px; z-index: 1001;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px; background: var(--walnut);
+  transition: all 0.3s ease; border-radius: 2px;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* ═══════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════ */
+.hero {
+  padding: calc(var(--nav-h) + 1.5rem) 0 3.5rem;
+  background: var(--white);
+  position: relative;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1px; background: linear-gradient(90deg, transparent, var(--sand), transparent);
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+}
+.hero-logo { width: 240px; margin-bottom: 2rem; }
+.hero-eyebrow {
+  font-family: var(--font-body); font-weight: 500; font-size: 0.8rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--copper);
+  margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.hero-eyebrow::before {
+  content: ''; width: 28px; height: 1px; background: var(--copper);
+}
+.hero h1 {
+  font-size: clamp(2.6rem, 5vw, 3.8rem); color: var(--walnut);
+  margin-bottom: 1.2rem; font-weight: 600;
+  letter-spacing: 0.02em; text-transform: uppercase;
+}
+.hero-sub {
+  font-size: 1.05rem; font-weight: 400; color: var(--text); line-height: 1.75;
+  margin-bottom: 2.2rem; max-width: 460px;
+}
+.hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.hero-phone {
+  font-weight: 500; font-size: 0.9rem; color: var(--text-mid);
+  display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s;
+}
+.hero-phone:hover { color: var(--copper); }
+.hero-phone svg { width: 16px; height: 16px; fill: var(--copper); }
+
+.hero-visual {
+  position: relative; border-radius: 8px; overflow: hidden;
+  aspect-ratio: 5 / 4;
+}
+.hero-visual-bg {
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(90deg, transparent, transparent 32px, rgba(35,23,18,0.03) 32px, rgba(35,23,18,0.03) 33px),
+    repeating-linear-gradient(0deg, transparent, transparent 200px, rgba(35,23,18,0.015) 200px, rgba(35,23,18,0.015) 201px),
+    linear-gradient(160deg, #a8876a 0%, #8b6d52 25%, #c4a888 50%, #96775c 75%, #a8876a 100%);
+}
+.hero-badge {
+  position: absolute; bottom: 1.8rem; right: 1.8rem; z-index: 1;
+  background: var(--walnut-90); color: var(--cream);
+  padding: 1.2rem 1.6rem; border-radius: var(--radius);
+  text-align: center; backdrop-filter: blur(8px);
+  border: 1px solid rgba(191,106,58,0.15);
+}
+.hero-badge .badge-num {
+  font-family: var(--font-heading); font-size: 2.4rem; font-weight: 600; line-height: 1;
+  display: block; color: var(--gold);
+}
+.hero-badge .badge-text {
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem;
+  display: block; font-weight: 600;
+}
+
+/* ═══════════════════════════════════════
+   DOOR-TO-FLOOR STRIP
+   ═══════════════════════════════════════ */
+.dtf-strip {
+  background: var(--walnut); color: var(--cream);
+  padding: 1.2rem 0; text-align: center; position: relative;
+  overflow: hidden;
+}
+.dtf-strip::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(191,106,58,0.04), transparent);
+}
+.dtf-strip p {
+  font-size: 0.95rem; letter-spacing: 0.02em; position: relative; font-weight: 400;
+}
+.dtf-strip strong { color: var(--gold); font-weight: 600; }
+.dtf-strip a {
+  color: var(--copper-lt); font-weight: 600; transition: color 0.2s;
+  border-bottom: 1px solid rgba(212,118,78,0.3);
+}
+.dtf-strip a:hover { color: var(--cream); border-bottom-color: var(--cream); }
+
+/* ═══════════════════════════════════════
+   SHARED SECTION STYLES
+   ═══════════════════════════════════════ */
+.section { padding: 5.5rem 0; }
+.section-alt { background: var(--cream); }
+.section-dark { background: var(--walnut); color: var(--cream); }
+
+.section-heading { text-align: center; margin-bottom: 3.5rem; }
+.section-heading h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem); color: var(--walnut);
+  margin-bottom: 0.5rem; font-weight: 600;
+}
+.section-dark .section-heading h2 { color: var(--cream); }
+.section-heading .overline {
+  font-family: var(--font-body); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--copper);
+  margin-bottom: 0.8rem; display: block;
+}
+.accent-line {
+  width: 48px; height: 2px; background: var(--gold); margin: 1.2rem auto 0;
+}
+.section-heading p {
+  margin-top: 1rem; color: var(--text-mid); max-width: 520px;
+  margin-left: auto; margin-right: auto; font-weight: 400; font-size: 1.02rem;
+}
+.section-dark .section-heading p { color: var(--sand); }
+
+/* ═══════════════════════════════════════
+   SERVICES
+   ═══════════════════════════════════════ */
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.service-card {
+  background: var(--white); border-radius: var(--radius); padding: 2rem 1.6rem 2.2rem;
+  border: 1px solid rgba(213,197,171,0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+}
+.service-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--copper);
+}
+.service-num {
+  font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600;
+  color: var(--gold); margin-bottom: 0.8rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.service-num::after {
+  content: ''; flex: 1; height: 1px; background: var(--sand);
+}
+.service-card h3 {
+  font-size: 1.2rem; margin-bottom: 0.7rem; color: var(--walnut); font-weight: 600;
+}
+.service-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.65; font-weight: 400; }
+
+/* ═══════════════════════════════════════
+   ABOUT
+   ═══════════════════════════════════════ */
+.about-grid {
+  display: grid; grid-template-columns: 5fr 7fr; gap: 4rem; align-items: center;
+}
+.about-photo {
+  background: linear-gradient(135deg, var(--sand) 0%, #a8876a 100%);
+  border-radius: 8px; aspect-ratio: 3 / 4;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-light); font-size: 0.85rem; text-transform: uppercase;
+  letter-spacing: 0.08em; position: relative; overflow: hidden;
+}
+.about-photo::after {
+  content: ''; position: absolute; inset: 0;
+  border: 1px solid rgba(191,106,58,0.2); border-radius: 8px;
+}
+.about-quote {
+  font-family: var(--font-body); font-style: italic; font-size: 1.3rem;
+  color: var(--walnut); line-height: 1.5; margin-bottom: 1.8rem;
+  padding-left: 1.4rem; position: relative; font-weight: 400;
+}
+.about-quote::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: linear-gradient(180deg, var(--gold), var(--gold-lt));
+  border-radius: 2px;
+}
+.about-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.about-text { margin-bottom: 1rem; color: var(--text); font-weight: 400; font-size: 0.98rem; }
+.about-text strong { font-weight: 600; color: var(--walnut); }
+
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.2rem; }
+.pillar {
+  text-align: center; padding: 1.3rem 0.8rem;
+  border: 1px solid var(--sand); border-radius: var(--radius);
+  background: var(--cream); transition: border-color 0.2s;
+}
+.pillar:hover { border-color: var(--copper); }
+.pillar-icon {
+  width: 36px; height: 36px; margin: 0 auto 0.6rem;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--copper-glow);
+}
+.pillar-icon svg { width: 18px; height: 18px; stroke: var(--copper); fill: none; stroke-width: 2; }
+.pillar h4 { font-size: 0.85rem; color: var(--walnut); font-weight: 600; letter-spacing: 0.02em; }
+
+/* ═══════════════════════════════════════
+   GALLERY
+   ═══════════════════════════════════════ */
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
+}
+.gallery-item {
+  display: block; position: relative; overflow: hidden;
+  border-radius: var(--radius); aspect-ratio: 4 / 3; background: var(--sand);
+}
+.gallery-item:first-child:not(:only-child) { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+.gallery-item img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.4s ease;
+}
+a.gallery-item:hover img { transform: scale(1.03); }
+.gallery-placeholder {
+  display: flex; align-items: center; justify-content: center; background: var(--ph);
+  color: rgba(251,248,243,0.6); font-size: 0.8rem; text-transform: uppercase;
+  letter-spacing: 0.08em; font-weight: 500;
+}
+
+/* ═══════════════════════════════════════
+   CONTACT
+   ═══════════════════════════════════════ */
+.contact-grid {
+  display: grid; grid-template-columns: 5fr 7fr; gap: 4rem;
+}
+.contact-info h3 {
+  font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--cream); font-weight: 600;
+}
+.contact-item {
+  display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.3rem;
+}
+.contact-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: rgba(191,106,58,0.1);
+  border: 1px solid rgba(191,106,58,0.2);
+}
+.contact-icon svg { width: 16px; height: 16px; stroke: var(--copper); fill: none; stroke-width: 2; }
+.ci-label {
+  font-weight: 600; font-size: 0.75rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--gold); display: block; margin-bottom: 0.15rem;
+}
+.ci-value { color: var(--sand); font-weight: 400; font-size: 0.95rem; }
+.ci-value a { color: var(--cream); transition: color 0.2s; border-bottom: 1px solid rgba(251,248,243,0.2); }
+.ci-value a:hover { color: var(--copper); border-bottom-color: var(--copper); }
+
+.pricing-note {
+  margin-top: 2rem; padding: 1.2rem 1.4rem;
+  background: rgba(191,106,58,0.06);
+  border: 1px solid rgba(191,106,58,0.15);
+  border-radius: var(--radius); font-size: 0.9rem; color: var(--sand); font-weight: 400;
+}
+.pricing-note strong { color: var(--gold); font-weight: 600; }
+
+.contact-form {
+  background: var(--white); border-radius: 8px; padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0; }
+.form-group { margin-bottom: 1.1rem; }
+.form-group label {
+  display: block; font-weight: 500; font-size: 0.78rem; margin-bottom: 0.4rem;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mid);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; padding: 0.7rem 0.9rem; border: 1px solid var(--sand);
+  border-radius: 4px; font-family: var(--font-body); font-size: 0.92rem;
+  background: var(--white); color: var(--walnut); transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none; border-color: var(--copper);
+  box-shadow: 0 0 0 3px var(--copper-glow);
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--text-light); font-weight: 400; }
+.form-group textarea { resize: vertical; min-height: 110px; }
+.form-submit { width: 100%; padding: 0.85rem; font-size: 0.95rem; margin-top: 0.5rem; }
+
+/* ═══════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════ */
+.footer {
+  background: var(--walnut); color: var(--sand); padding: 3.5rem 0 1.5rem;
+  border-top: 1px solid rgba(191,106,58,0.1);
+}
+.footer-inner {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(213,197,171,0.1);
+}
+.footer-logo img { height: 60px; width: auto; object-fit: contain; filter: brightness(1.8); }
+.footer-links { display: flex; gap: 2rem; justify-content: center; }
+.footer-links a {
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em;
+  font-weight: 500; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--copper); }
+.footer-social a {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.85rem; transition: color 0.2s; font-weight: 400;
+}
+.footer-social a:hover { color: var(--copper); }
+.footer-social svg { width: 18px; height: 18px; fill: currentColor; }
+.footer-bottom {
+  text-align: center; padding-top: 1.5rem; font-size: 0.78rem; color: var(--sand);
+  letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════
+   MOBILE BOTTOM BAR
+   ═══════════════════════════════════════ */
+.mobile-bar {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+  background: var(--walnut); border-top: 2px solid var(--copper);
+}
+.mobile-bar a {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.85rem; color: var(--cream); font-weight: 600; font-size: 0.85rem;
+  text-transform: uppercase; letter-spacing: 0.06em; transition: background 0.2s;
+}
+.mobile-bar a:first-child { border-right: 1px solid rgba(191,106,58,0.2); }
+.mobile-bar a:hover { background: rgba(191,106,58,0.1); }
+.mobile-bar svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  :root { --nav-h: 66px; --nav-h-shrink: 54px; }
+  html { scroll-padding-top: var(--nav-h); }
+
+  .hamburger { display: flex; }
+  .nav-links {
+    position: fixed; top: 0; right: -100%; width: 280px; height: 100dvh;
+    flex-direction: column; justify-content: center; gap: 2rem;
+    background: var(--white); padding: 2rem;
+    box-shadow: -4px 0 30px rgba(35,23,18,0.15);
+    transition: right 0.3s ease;
+  }
+  .nav-links.open { right: 0; }
+  .nav-overlay {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(35,23,18,0.4); backdrop-filter: blur(2px);
+  }
+  .nav-overlay.active { display: block; }
+  .nav-links a { font-size: 1.05rem; }
+
+  .hero { padding: calc(var(--nav-h) + 1rem) 0 2rem; }
+  .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hero-content { text-align: center; }
+  .hero-logo { margin: 0 auto 1.5rem; width: 180px; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-eyebrow::before { display: none; }
+  .hero-sub { margin: 0 auto 2rem; }
+  .hero-actions { justify-content: center; }
+  .hero-visual { aspect-ratio: 16 / 9; }
+
+  .section { padding: 4rem 0; }
+  .services-grid { grid-template-columns: 1fr; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-photo { aspect-ratio: 4 / 3; }
+
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-item:first-child:not(:only-child) { grid-row: auto; aspect-ratio: 16 / 9; }
+
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+
+  .footer-inner { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+
+  .mobile-bar { display: flex; }
+  body { padding-bottom: 54px; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2.1rem; }
+  .pillars { grid-template-columns: 1fr; }
+  .section { padding: 3rem 0; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item:first-child:not(:only-child) { grid-column: auto; aspect-ratio: 4 / 3; }
+}
+</style>
+</head>
+<body>
+
+<a href="#services" class="skip-link">Skip to content</a>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="Young and Sons - home">Young <span>&amp;</span> Sons</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="btn-cta">Free Estimate</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" aria-label="Introduction">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <img {{LOGO_HERO}} alt="Young &amp; Sons Hardwood Flooring" class="hero-logo" width="640" height="738" fetchpriority="high">
+        <p class="hero-eyebrow">{{HERO_EYEBROW}}</p>
+        <h1>{{HERO_HEADLINE}}</h1>
+        <p class="hero-sub">{{HERO_TEXT}}</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-cta">Get Your Free Estimate</a>
+          <a href="tel:{{PHONE_TEL}}" class="hero-phone">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            {{PHONE_DISPLAY}}
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-visual-bg"></div>
+        <div class="hero-badge">
+          <span class="badge-num">{{BADGE_BIG}}</span>
+          <span class="badge-text">{{BADGE_SMALL}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DOOR-TO-FLOOR STRIP ═══ -->
+<div class="dtf-strip">
+  <div class="container">
+    <p><strong>{{STRIP_TITLE}}</strong> · {{STRIP_TEXT}} Call <a href="tel:{{PHONE_TEL}}">{{PHONE_DISPLAY}}</a></p>
+  </div>
+</div>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="section section-alt" id="services">
+  <div class="container">
+    <div class="section-heading">
+      <span class="overline">What We Do</span>
+      <h2>{{SERVICES_HEADING}}</h2>
+      <div class="accent-line"></div>
+      <p>{{SERVICES_INTRO}}</p>
+    </div>
+    <div class="services-grid">
+      {{SERVICES_CARDS}}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      {{ABOUT_PHOTO}}
+      <div>
+        <div class="section-heading" style="text-align:left; margin-bottom:1.5rem;">
+          <span class="overline">Our Story</span>
+          <h2>{{ABOUT_HEADING}}</h2>
+          <div class="accent-line" style="margin:1rem 0 0;"></div>
+        </div>
+        <blockquote class="about-quote">&ldquo;{{ABOUT_QUOTE}}&rdquo;</blockquote>
+        {{ABOUT_BODY}}
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <h4>{{PILLAR_1}}</h4>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <h4>{{PILLAR_2}}</h4>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h4>{{PILLAR_3}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY ═══ -->
+<section class="section section-alt" id="gallery">
+  <div class="container">
+    <div class="section-heading">
+      <span class="overline">Portfolio</span>
+      <h2>{{GALLERY_HEADING}}</h2>
+      <div class="accent-line"></div>
+      <p>{{GALLERY_INTRO}}</p>
+    </div>
+    <div class="gallery-grid">
+      {{GALLERY_ITEMS}}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="section section-dark" id="contact">
+  <div class="container">
+    <div class="section-heading">
+      <span class="overline">Let's Talk</span>
+      <h2>{{CONTACT_HEADING}}</h2>
+      <div class="accent-line"></div>
+      <p>{{CONTACT_INTRO}}</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Contact Details</h3>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="ci-content">
+            <span class="ci-label">Phone</span>
+            <span class="ci-value"><a href="tel:{{PHONE_TEL}}">{{PHONE_DISPLAY}}</a></span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="ci-content">
+            <span class="ci-label">Email</span>
+            <span class="ci-value"><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="ci-content">
+            <span class="ci-label">Service Area</span>
+            <span class="ci-value">{{SERVICE_AREA}}</span>
+          </div>
+        </div>
+        <div class="pricing-note">
+          {{PRICING_NOTE}}
+        </div>
+      </div>
+      <form class="contact-form" action="https://formspree.io/f/mdabbbop" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="service">Service Needed</label>
+          <select id="service" name="service" required>
+            <option value="" disabled selected hidden>Select a service</option>
+            {{SERVICE_OPTIONS}}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="sqft">Approximate Square Footage</label>
+          <input type="number" id="sqft" name="squareFootage" min="0" placeholder="e.g. 500">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us about your project..."></textarea>
+        </div>
+        <button type="submit" class="btn-cta form-submit">Send Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="#" class="footer-logo" aria-label="Young and Sons - home">
+        <img {{LOGO_FOOTER}} alt="Young &amp; Sons Hardwood Flooring" width="640" height="738" loading="lazy">
+      </a>
+      <ul class="footer-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="{{FACEBOOK}}" target="_blank" rel="noopener noreferrer" aria-label="Young &amp; Sons on Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {{YEAR}} Young &amp; Sons Hardwood Flooring.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ MOBILE BOTTOM BAR ═══ -->
+<div class="mobile-bar" role="navigation" aria-label="Quick actions">
+  <a href="tel:{{PHONE_TEL}}">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    Call Now
+  </a>
+  <a href="#contact">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+    Free Estimate
+  </a>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav'),
+      ham=document.getElementById('hamburger'),
+      links=document.getElementById('navLinks'),
+      overlay=document.getElementById('navOverlay');
+
+  function closeMenu(){
+    ham.classList.remove('active');
+    links.classList.remove('open');
+    overlay.classList.remove('active');
+    ham.setAttribute('aria-expanded','false');
+  }
+
+  window.addEventListener('scroll',function(){
+    nav.classList.toggle('scrolled',window.scrollY>40);
+  },{passive:true});
+
+  ham.addEventListener('click',function(){
+    var open=ham.classList.toggle('active');
+    links.classList.toggle('open');
+    overlay.classList.toggle('active');
+    ham.setAttribute('aria-expanded',open);
+  });
+
+  overlay.addEventListener('click',closeMenu);
+
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',closeMenu);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+# Decap CMS: the editor at youngandsonshardwood.com/admin.
+# Anyone with write access to the GitHub repo can sign in with their GitHub account.
+backend:
+  name: github
+  repo: s00bar00/youngandsons-site
+  branch: main
+
+site_url: https://youngandsonshardwood.com
+display_url: https://youngandsonshardwood.com
+
+media_folder: static/uploads
+public_folder: /uploads
+
+collections:
+  - name: pages
+    label: Website
+    editor:
+      preview: false
+    files:
+      - name: home
+        label: Home page
+        file: content/site.json
+        fields:
+          - label: Contact info
+            name: contact_info
+            widget: object
+            fields:
+              - { label: Phone number, name: phone, widget: string, hint: "Shown exactly as typed, e.g. (720) 934-1420. The call buttons update automatically." }
+              - { label: Email, name: email, widget: string }
+              - { label: Service area, name: service_area, widget: string }
+              - { label: Facebook page link, name: facebook, widget: string }
+
+          - label: Top of page
+            name: hero
+            widget: object
+            fields:
+              - { label: Small line above the headline, name: eyebrow, widget: string }
+              - { label: Headline, name: headline, widget: text, hint: "Press Enter to start a new line." }
+              - { label: Intro sentence, name: text, widget: text }
+              - { label: Badge (big text), name: badge_big, widget: string }
+              - { label: Badge (small text), name: badge_small, widget: string }
+
+          - label: Door to Floor banner
+            name: strip
+            widget: object
+            fields:
+              - { label: Bold title, name: title, widget: string }
+              - { label: Text, name: text, widget: string, hint: "“Call” and the phone number are added to the end automatically." }
+
+          - label: Services
+            name: services
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Intro, name: intro, widget: text }
+              - label: Service cards
+                name: items
+                widget: list
+                summary: "{{fields.title}}"
+                hint: "Drag to reorder. Cards are numbered automatically and also fill the “Service Needed” menu on the contact form."
+                fields:
+                  - { label: Service name, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+
+          - label: About
+            name: about
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Photo, name: photo, widget: image, required: false, choose_url: false, hint: "A tall (portrait) photo works best. Phone photos are fine; they get resized automatically." }
+              - { label: Photo description, name: photo_alt, widget: string, required: false, hint: "A few words for Google and screen readers, e.g. “Kendall Young sanding an oak floor”." }
+              - { label: Quote, name: quote, widget: string, hint: "Quote marks are added automatically." }
+              - { label: Story, name: body, widget: text, hint: "Leave a blank line between paragraphs. Put **two asterisks** around words to make them bold." }
+              - label: Three highlights
+                name: pillars
+                widget: object
+                hint: "Short phrases under the story. The icons stay the same."
+                fields:
+                  - { label: First, name: one, widget: string }
+                  - { label: Second, name: two, widget: string }
+                  - { label: Third, name: three, widget: string }
+
+          - label: Photo gallery
+            name: gallery
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Intro, name: intro, widget: text }
+              - label: Photos
+                name: photos
+                widget: list
+                summary: "{{fields.caption}}"
+                hint: "The first photo is shown largest. Drag to reorder. Phone photos are fine; they get resized automatically."
+                fields:
+                  - { label: Photo, name: image, widget: image, choose_url: false }
+                  - { label: Short description, name: caption, widget: string, hint: "e.g. “White oak refinish in Fort Collins”. Helps Google and screen readers." }
+
+          - label: Contact section
+            name: contact
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Intro, name: intro, widget: text }
+              - { label: Pricing note, name: pricing_note, widget: text, hint: "Put **two asterisks** around words to make them bold." }

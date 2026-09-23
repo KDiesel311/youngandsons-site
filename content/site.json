@@ -1,0 +1,71 @@
+{
+  "contact_info": {
+    "phone": "(720) 934-1420",
+    "email": "kendallyoung19@gmail.com",
+    "service_area": "Colorado & Southern Wyoming",
+    "facebook": "https://www.facebook.com/YoungFamFloors/"
+  },
+  "hero": {
+    "eyebrow": "Colorado & Southern Wyoming · Hardwood Specialists",
+    "headline": "Floors that tell\na story.",
+    "text": "We install, refinish, and repair hardwood floors across Colorado and Southern Wyoming. Free in-home estimates, every time.",
+    "badge_big": "5 Generations",
+    "badge_small": "Since 1902"
+  },
+  "strip": {
+    "title": "Door to Floor Sales",
+    "text": "We come to you with samples, measurements & quotes. No showroom needed."
+  },
+  "services": {
+    "heading": "Hardwood, Start to Finish",
+    "intro": "Full-service hardwood flooring for homes across Colorado and Southern Wyoming.",
+    "items": [
+      {
+        "title": "Hardwood Installation",
+        "description": "Solid and engineered hardwood, installed from subfloor to finish. We do the whole job, start to end."
+      },
+      {
+        "title": "Sanding & Refinishing",
+        "description": "Dustless sanding and quality finishes that make old floors look new again. You'd be surprised what's hiding under the wear."
+      },
+      {
+        "title": "Floor Repair",
+        "description": "Water damage, scratches, and loose boards fixed right. We match your existing flooring so you can't tell where the repair was."
+      },
+      {
+        "title": "Custom Staining",
+        "description": "Pick your color and we'll make it happen. Even coats, clean lines, and a finish that lasts."
+      },
+      {
+        "title": "Door-to-Floor Consults",
+        "description": "We bring samples to your home so you can see colors in your own lighting. No showroom trip needed."
+      },
+      {
+        "title": "Stair Refinishing",
+        "description": "Treads, risers, and railings sanded and refinished to match your floors. Your stairs get the same work as every other room."
+      }
+    ]
+  },
+  "about": {
+    "heading": "About Young & Sons",
+    "photo": "",
+    "photo_alt": "",
+    "quote": "Do it right the first time and you'll never have to do it again.",
+    "body": "**Five generations.** Since 1902, the Young family has been working with wood. **Kendall Young** carries that tradition forward, perfecting hardwood floors across Northern Colorado and Southern Wyoming. What started over a century ago has grown into a family business built on honest work and fair prices.\n\nAt Young & Sons, we only do hardwood. It's all we know, and we know it well. Every quote includes labor and materials upfront. No hidden costs.",
+    "pillars": {
+      "one": "Honest Pricing",
+      "two": "Only Hardwood",
+      "three": "Shows Up On Time"
+    }
+  },
+  "gallery": {
+    "heading": "Our Work",
+    "intro": "A look at recent hardwood projects across Colorado.",
+    "photos": []
+  },
+  "contact": {
+    "heading": "Get In Touch",
+    "intro": "Ready for a free estimate? Reach out and we'll come to you.",
+    "pricing_note": "**All quotes include labor & materials.** No hidden fees, no surprises. What we quote is what you pay."
+  }
+}
